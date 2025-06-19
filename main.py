@@ -180,3 +180,7 @@ def show_people_table(request: Request, search: str = "", db: Session = Depends(
         "search": search
     })
 
+@app.get("/", response_class=RedirectResponse)
+def root():
+    return RedirectResponse(url="/people-table")
+
