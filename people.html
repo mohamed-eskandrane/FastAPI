@@ -1,0 +1,63 @@
+<!-- نفس التنسيق السابق مع إضافة أعمدة الأزرار -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قائمة الأشخاص</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f2f2f2; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; background-color: white; }
+        th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
+        th { background-color: #333; color: white; }
+        a.button, button { padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; }
+        a.button { background-color: #007bff; color: white; text-decoration: none; }
+        form button { background-color: #dc3545; color: white; }
+    </style>
+</head>
+<body>
+    <h2>قائمة الأشخاص</h2>
+    <div style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+        <form method="get" action="/people-table" style="margin-bottom: 15px;">
+            <input type="text" name="search" placeholder="ابحث بالاسم أو الجنس أو الملاحظات"
+                value="{{ search }}" style="padding: 10px; width: 300px;" />
+            <button type="submit" style="padding: 10px;">🔍 بحث</button>
+        </form>
+    <a href="/add" class="button" style="background-color: green; margin-bottom: 10px; display: inline-block;">➕ إضافة شخص جديد</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>الرقم</th>
+                <th>الاسم</th>
+                <th>الجنس</th>
+                <th>تاريخ الميلاد</th>
+                <th>الجنسية</th>
+                <th>العنوان الحالي</th>
+                <th>ملاحظات</th>
+                <th>إجراءات</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for person in people %}
+            <tr>
+                <td>{{ person.id }}</td>
+                <td>{{ person.name }}</td>
+                <td>{{ person.gender }}</td>
+                <td>{{ person.birth_date }}</td>
+                <td>{{ person.nationality }}</td>
+                <td>{{ person.current_address }}</td>
+                <td>{{ person.notes or '' }}</td>
+                <td>
+                    <a class="button" href="/edit/{{ person.id }}">تعديل</a>
+                    <form action="/delete/{{ person.id }}" method="post" style="display:inline;">
+                        <button type="submit">حذف</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

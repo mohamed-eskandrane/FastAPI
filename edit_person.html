@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعديل بيانات</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f2f2f2; padding: 20px; }
+        form { background: white; padding: 20px; border-radius: 10px; max-width: 500px; margin: auto; }
+        input, textarea { width: 100%; padding: 10px; margin-top: 10px; }
+        label { display: block; margin-top: 10px; }
+        button { margin-top: 20px; padding: 10px 20px; background: #28a745; color: white; border: none; }
+    </style>
+</head>
+<body>
+    <h2>تعديل بيانات الشخص رقم {{ person.id }}</h2>
+    <form method="post">
+        <label>الاسم:</label>
+        <input type="text" name="name" value="{{ person.name }}" required>
+
+        <label>الجنس:</label>
+        <input type="text" name="gender" value="{{ person.gender }}" required>
+
+        <label>تاريخ الميلاد:</label>
+        <input type="date" name="birth_date" value="{{ person.birth_date }}" required>
+
+        <label>الجنسية:</label>
+        <input type="text" name="nationality" value="{{ person.nationality }}" required>
+
+        <label>العنوان الحالي:</label>
+        <input type="text" name="current_address" value="{{ person.current_address }}" required>
+
+        <label>ملاحظات:</label>
+        <textarea name="notes">{{ person.notes or '' }}</textarea>
+        <div>
+            <button type="submit">حفظ التعديلات</button>
+            <a href="/people-table" style="display: inline-block; margin-bottom: 20px; padding: 8px 16px; background-color: gray; color: white; text-decoration: none; border-radius: 5px;">🔙 العودة إلى جدول الأشخاص</a>
+        </div>
+        
+    </form>
+</body>
+</html>
