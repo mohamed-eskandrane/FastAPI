@@ -3,10 +3,11 @@ from database import Base
 
 class PersonModel(Base):
     __tablename__ = "people"
+    
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=False)
-    gender = Column(String, nullable=False)
-    birth_date = Column(Date, nullable=False)
-    nationality = Column(String, nullable=False)
-    current_address = Column(String, nullable=False)
+    name = Column(String)
+    gender = Column(String)
+    birth_date = Column(Date)
+    nationality = Column(String)
+    current_address = Column(String)
     notes = Column(String, nullable=True)
